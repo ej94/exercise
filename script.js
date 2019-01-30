@@ -11,7 +11,7 @@ function liClick(){
   this.classList.toggle("done");
 }
 /*Delete button */
-[...document.getElementsByTagName('button')].forEach(el =>
+[...document.getElementsByTagName('del')].forEach(el =>
   el.addEventListener('click', () =>
     el.parentNode.parentNode.removeChild(el.parentNode)));
 
@@ -21,10 +21,16 @@ function inputLength() {
 
 function createListElement() {
 	var li = document.createElement("li");
+	li.addEventListener('click', () => {
+        li.classList.toggle("done");
+    })
     var deletebutton = document.createElement("button")
     var spanitem = document.createElement("span")
 	spanitem.appendChild(document.createTextNode(input.value));
-    deletebutton.appendChild(document.createTextNode("Delete"));
+        deletebutton.appendChild(document.createTextNode("Delete"));
+	deletebutton.addEventListener('click', () => {
+        ul.removeChild(li);
+    });
 	ul.appendChild(li);
     li.appendChild(spanitem)
     li.appendChild(deletebutton);
